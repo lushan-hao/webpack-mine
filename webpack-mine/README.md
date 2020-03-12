@@ -1,4 +1,4 @@
-##### 按照https://github.com/YvetteLau/webpack/进行学习的    
+##### 按照https://github.com/YvetteLau/webpack/进行学习的     
 核心  
 ```
 entry:入口   
@@ -236,3 +236,67 @@ resolve 配置
 ```
 
 ```
+区分不同的环境   
+```
+webpack-merge 专为 webpack 设计，提供了一个 merge 函数，用于连接数组，合并对象。   
+webpack.config.base.js 中是通用的 webpack 配置   
+```
+定义环境变量   
+DefinePlugin 中的每个键，是一个标识符.   
+```
+//webpack.config.dev.js
+const webpack = require('webpack');
+module.exports = {
+    plugins: [
+        new webpack.DefinePlugin({
+            DEV: JSON.stringify('dev'), //字符串
+            FLAG: 'true' //FLAG 是个布尔类型
+        })
+    ]
+}
+//index.js
+if(DEV === 'dev') {
+    //开发环境
+}else {
+    //生产环境
+}
+```
+利用webpack解决跨域问题   
+```
+配置代理
+
+修改 webpack 配置:
+
+//webpack.config.js
+module.exports = {
+    //...
+    devServer: {
+        proxy: {
+            "/api": "http://localhost:4000"
+        }
+    }
+}  
+
+```
+前端模拟数据   
+```
+使用 mocker-api mock数据接口   
+npm install mocker-api -D   
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
